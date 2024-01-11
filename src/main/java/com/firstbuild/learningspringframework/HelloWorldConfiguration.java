@@ -1,7 +1,9 @@
 package com.firstbuild.learningspringframework;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 
 /* so here we can define spring beans the things which are manage by beans
  * are called spring beans and we can define the methods to create the
@@ -51,14 +53,30 @@ public class HelloWorldConfiguration {
 	public Person person3CallByParameters(String name,int age, Address address3) {
 		return new Person(name,age,address3);
 	}
+	
+//	No qualifying bean of type available: expected single matching bean but
+//	found 2: address2,address3
+//	multiple matching beans are called candidates
+	@Bean
+	@Primary
+	public Person person4CallByParameters(String name,int age, Address address) {
+		return new Person(name,age,address);
+	}
+
+	@Bean
+	public Person person5Qualifier(String name,int age,@Qualifier("address3qualifier") Address address) {
+		return new Person(name,age,address);
+	}
 
 	@Bean(name="address2")
+	@Primary
 	public Address address() {
 		
 		return new Address("Lala Oli", "Kamptee");
 	}
 	
 	@Bean
+	@Qualifier("address3qualifier")
 	public Address address3() {
 		return new Address("HD nagar", "Nagpur");
 	}

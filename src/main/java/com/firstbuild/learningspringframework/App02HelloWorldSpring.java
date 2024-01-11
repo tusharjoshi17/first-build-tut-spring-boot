@@ -1,5 +1,7 @@
 package com.firstbuild.learningspringframework;
 
+import java.util.Arrays;
+
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class App02HelloWorldSpring {
@@ -33,6 +35,9 @@ public class App02HelloWorldSpring {
 //	System.out.println(context.getBean(Address.class));
 	System.out.println(context.getBean("person2CallByMethod"));
 	System.out.println(context.getBean("person3CallByParameters"));
+//	Here we are using functional programming which comes under java 8(::) <- it is a method reference
+	Arrays.stream(context.getBeanDefinitionNames())
+	.forEach(System.out::println);
 	
 	
 	}
