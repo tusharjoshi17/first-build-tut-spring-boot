@@ -1,4 +1,4 @@
-package com.firstbuild.learningspringframework;
+package com.firstbuild.learningspringframework.helloworld;
 
 import java.util.Arrays;
 
@@ -19,8 +19,8 @@ public class App02HelloWorldSpring {
 		/* 2: Configure the things that we want spring to manage - @Configuration (class)
 		 * HelloWorldConfiguration - @Configuration
 		 * name - @Bean*/
-	var context = 
-				new AnnotationConfigApplicationContext(HelloWorldConfiguration.class);
+	try(var context = 
+				new AnnotationConfigApplicationContext(HelloWorldConfiguration.class)){
 		/*we are creating here are spring context with the annotation
 		 *so we'd want to create inside the jvm, a spring context(spring app)
 		 * and we are using @Configuration class to create a 
@@ -40,6 +40,7 @@ public class App02HelloWorldSpring {
 	.forEach(System.out::println);
 	
 	
+	}
 	}
 
 }
